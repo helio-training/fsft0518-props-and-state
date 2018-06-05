@@ -1,21 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
 
-class App extends Component {
+// this.setState({ name: })
+
+export default class App extends Component {
+
+  state = {
+    name: '',
+    age: 17
+  }
+
   render() {
+    const isLegalAge = this.state.age >= 18
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <h1>{this.state.name}</h1>
+        <div>
+          <input type="text" placeholder="Name" value={this.state.name} onChange={event => this.setState({ name: event.target.value })} />
+        </div>
+        <div>
+          <input type="number" placeholder="Age" value={this.state.age} onChange={event => this.setState({ age: event.target.value })} />
+        </div>
+
+        <div hidden={!isLegalAge}>
+          <p>Hey, I'm 18</p>
+          <button>Continue</button>
+        </div>
+
+
       </div>
-    );
+    )
   }
 }
-
-export default App;
